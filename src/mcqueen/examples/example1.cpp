@@ -1,4 +1,4 @@
-#include "library.hpp"
+#include "mcqueen.hpp"
 #include <iostream>
 #include <random>
 #include <cmath>
@@ -13,8 +13,8 @@ struct Point
 
 std::ostream& operator<<(std::ostream& flux, Point p)
 {
-    flux << x << " " << y << std::endl;
-    return flux
+    flux << p.x << " " << p.y << std::endl;
+    return flux;
 }
 
 Point operator+(const Point& p1, const Point& p2)
@@ -50,5 +50,5 @@ int main(){
     {
         std::cout << proto << "\n";
     }
-    std::cout << endl;
+    std::cout << std::endl;
 }
