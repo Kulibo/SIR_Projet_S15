@@ -1,5 +1,7 @@
 add_library(mcqueen
-	SHARED)
+	SHARED
+	mcqueen.cpp)
+
 
 install(TARGETS mcqueen
 	DESTINATION lib)
