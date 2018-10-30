@@ -3,4 +3,6 @@ project(mcqueen)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_library(mcqueen SHARED src/library.cpp)
+add_subdirectory(src)
+add_subdirectory(examples)
+
