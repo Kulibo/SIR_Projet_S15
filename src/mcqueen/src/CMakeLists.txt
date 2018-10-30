@@ -1,5 +1,5 @@
-add_library(mcqueen)
-	SHARED
+add_library(mcqueen
+	SHARED)
 
 install(TARGETS mcqueen
 	DESTINATION lib)
