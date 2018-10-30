@@ -1,4 +1,4 @@
-# Install script for directory: /usr/users/promo2018/prenleloup_tho/SIR_Projet_S15/src/mcqueen/examples
+# Install script for directory: /home/thelistener/Projets/SIR_Projet_S15/src/mcqueen/examples
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,7 +29,7 @@ endif()
 
 # Install shared libraries without execute permission?
 if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "1")
+  set(CMAKE_INSTALL_SO_NO_EXE "0")
 endif()
 
 # Is this installation the result of a crosscompile?
@@ -38,6 +38,6 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE PROGRAM RENAME "mcqueen-example1" FILES "/usr/users/promo2018/prenleloup_tho/SIR_Projet_S15/src/mcqueen/build/examples/example1")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE PROGRAM RENAME "mcqueen-example1" FILES "/home/thelistener/Projets/SIR_Projet_S15/src/mcqueen/build/examples/example1")
 endif()
 
