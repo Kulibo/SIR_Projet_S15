@@ -12,7 +12,7 @@ namespace mq {
             public:
                 Mcqueen(size_t nPrototypes, std::function<double(T)> distance, double step = 0.5);
                 vectors update(T sample);
-
+                vectors prototypes() const;
             private:
                 typename std::vector<T>::iterator find(T sample) const;
 
@@ -45,7 +45,10 @@ namespace mq{
         return _prototypes;
     }
 
-    
+    template<typename T>
+        std::vector<T> Mcqueen<T>::prototypes() const{
+            return _prototypes;
+        }
 
 }
 
