@@ -2,48 +2,25 @@
 #include <iostream>
 #include <random>
 #include <cmath>
+#include <complex>
 
-struct Point
-{
-    double x;
-    double y;
-
-    Point(double x, double y) : x(x), y(y) {}
-};
-
-std::ostream& operator<<(std::ostream& flux, Point p)
-{
-    flux << p.x << " " << p.y << std::endl;
-    return flux;
-}
-
-Point operator+(const Point& p1, const Point& p2)
-{
-    return Point(p1.x + p2.x, p1.y + p2.y);
-}
-
-Point operator-(const Point& p1, const Point& p2)
-{
-    return Point(p1.x - p2.x, p1.y - p2.y);
-}
-
-double norme(const Point p1){
-    return sqrt(p1.x*p1.x + p1.y*p1.y);
+double norme(std::complex<double> p){
+    return sqrt(p.real()*p.real() + p.imag()*p.imag());
 }
 
 int main(){
     std::default_random_engine generator;
     std::uniform_real_distribution<double> distribution(0.0,1.0);
-    Point p1(0.0, 0.0);
-    Point p2(0.0, 2.0);
-    Point p3(2.0, 0.0);
-    Point p4(2.0, 2.0);
-    Mcqueen<Point> learner(4, &norme); 
+    std::complex<double> p1(0.0, 0.0);
+    std::complex<double> p2(0.0, 2.0);
+    std::complex<double> p3(2.0, 0.0);
+    std::complex<double> p4(2.0, 2.0);
+    mq::Mcqueen<std::complex<double>> learner(4, &norme); 
     for(unsigned int i(0); i < 100; i++){
-        learner.update(p1 + Point( distribution(generator), distribution(generator)));
-        learner.update(p2 + Point( distribution(generator), distribution(generator)));
-        learner.update(p3 + Point( distribution(generator), distribution(generator)));
-        learner.update(p4 + Point( distribution(generator), distribution(generator)));
+        learner.update(p1 +std::complex<double>( distribution(generator), distribution(generator)));
+        learner.update(p2 + std::complex<double>( distribution(generator), distribution(generator)));
+        learner.update(p3 + std::complex<double>( distribution(generator), distribution(generator)));
+        learner.update(p4 + std::complex<double>( distribution(generator), distribution(generator)));
     }
     
     for(auto proto : learner.prototypes())

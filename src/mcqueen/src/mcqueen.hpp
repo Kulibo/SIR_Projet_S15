@@ -14,7 +14,7 @@ namespace mq {
                 vectors update(T sample);
                 vectors prototypes() const;
             private:
-                typename std::vector<T>::iterator find(T sample) const;
+                typename std::vector<T>::iterator find(T sample);
 
             private:
                 vectors _prototypes;
@@ -34,7 +34,7 @@ namespace mq{
         
     }
     template<typename T>
-    typename std::vector<T>::iterator Mcqueen<T>::find(T sample) const{
+    typename std::vector<T>::iterator Mcqueen<T>::find(T sample) {
         return std::min_element(_prototypes.begin(), _prototypes.end(), [this, sample](T a, T b){return _distance(a-sample)<=_distance(b-sample);}); 
     }
 
