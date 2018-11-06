@@ -46,9 +46,9 @@ namespace mq{
     }
 
     template<typename T>
-        std::vector<T> Mcqueen<T>::prototypes() const{
-            return _prototypes;
-        }
+    std::vector<T> Mcqueen<T>::prototypes() const{
+        return _prototypes;
+    }
 
 }
 
