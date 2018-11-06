@@ -1,4 +1,4 @@
-# Install script for directory: /home/thelistener/Projets/SIR_Projet_S15/src/mcqueen/src
+# Install script for directory: /usr/users/promo2018/prenleloup_tho/SIR_Projet_S15/src/mcqueen/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,7 +29,7 @@ endif()
 
 # Install shared libraries without execute permission?
 if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "0")
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
 # Is this installation the result of a crosscompile?
@@ -44,7 +44,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libmcqueen.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/thelistener/Projets/SIR_Projet_S15/src/mcqueen/build/src/libmcqueen.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/usr/users/promo2018/prenleloup_tho/SIR_Projet_S15/src/mcqueen/build/src/libmcqueen.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libmcqueen.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libmcqueen.so")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -54,9 +54,6 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/mcqueen" TYPE FILE FILES "/home/thelistener/Projets/SIR_Projet_S15/src/mcqueen/src/mcqueen.hpp")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/mcqueen" TYPE FILE FILES "/usr/users/promo2018/prenleloup_tho/SIR_Projet_S15/src/mcqueen/src/mcqueen.hpp")
 endif()
 
