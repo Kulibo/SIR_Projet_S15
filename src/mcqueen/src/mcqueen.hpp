@@ -2,7 +2,24 @@
 #define MCQUEEN_LIBRARY_HPP
 #include <vector>
 #include <algorithm>
+#include <numeric>
 #include <functional>
+#include <cmath>
+
+template <typename Container>
+struct Default_distance
+{
+	typedef typename Container::value_type data_type;
+	static std::function<double(Container)> fun()
+	{
+	    // Lambda fonction qui pour a un vector, renvoie la somme des carrés 
+	    return [] (Container a)
+	    {
+	        return std::accumulate(a.begin(), a.end(), 0.0, [] (double accu, data_type element) {return accu + static_cast<double>(element*element);});	    
+	    };
+	}
+};
+
 
 namespace mq {
     template <typename T>
@@ -10,7 +27,7 @@ namespace mq {
             public:
                 using vectors = std::vector<T>;
             public:
-                Mcqueen(size_t nPrototypes, std::function<double(T)> distance, double step = 0.5);
+                Mcqueen(size_t nPrototypes, std::function<double(T)> distance = Default_distance<std::vector<T>>::fun(), double step = 0.5);
                 vectors update(T sample);
                 vectors prototypes() const;
             private:
