@@ -32,7 +32,6 @@ namespace mq{
         private:
             std::unique_ptr<Color_selector> _selector;
             Mcqueen _learner;
-            int _sel_prot;
-
+            size_t _sel_prot;
     };
 }

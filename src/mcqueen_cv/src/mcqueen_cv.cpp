@@ -25,6 +25,15 @@ namespace mq {
     , _learner(Mcqueen<rgb>(prototypes.length()).set_prototypes(prototypes))
     , _sel_prot(0)
     {}
+
+    void Mcqueen_CV::select_prototypes(size_t proto_index)
+    {
+	if(proto_index >= _learner.prototypes().size())
+		throw std::logic_error("Not enough prototypes");
+
+	_sel_prot = proto_index;
+    }
+
 }
 	
 
