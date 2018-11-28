@@ -16,6 +16,8 @@ namespace mq {
             public:
                 Mcqueen(size_t nPrototypes, std::function<double(T)> distance = Default_distance<std::vector<T>>(), double step = 0.5);
                 vectors update(T sample);
+
+		unsigned int nbPrototypes() const;
                 vectors prototypes() const;
                 vectors set_prototypes(std::vector<T> prototypes);
 
@@ -50,6 +52,12 @@ namespace mq{
         auto prototype = find_closest_prototype(sample);
         *prototype += _step*(sample - *prototype);
         return _prototypes;
+    }
+
+    template<typename T>
+    unsigned int Mcqueen<T>::nbPrototypes() const
+    {
+	    return _prototypes.size();
     }
 
     template<typename T>
