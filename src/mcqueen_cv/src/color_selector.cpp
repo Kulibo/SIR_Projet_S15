@@ -31,4 +31,9 @@ namespace mq{
         pix[2]= _img_mat.data[row_index*_img_mat.rows*_img_mat.channels() + col_index*_img_mat.cols*_img_mat.channels() + 0];
         return pix;
     }
+
+    cv::Size Color_selector::img_size() const
+    {
+	return _img_mat.size();
+    }
 }
