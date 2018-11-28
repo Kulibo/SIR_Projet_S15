@@ -29,11 +29,15 @@ namespace mq{
         int row_index(dist_row(gen));
         int col_index(dist_col(gen));
 
-        //gets the rgb colors of the pixel from the format given by imread
-        pix[0]= _img_mat.data[row_index*_img_mat.rows*_img_mat.channels() + col_index*_img_mat.cols*_img_mat.channels() + 2];
-        pix[1]= _img_mat.data[row_index*_img_mat.rows*_img_mat.channels() + col_index*_img_mat.cols*_img_mat.channels() + 1];
-        pix[2]= _img_mat.data[row_index*_img_mat.rows*_img_mat.channels() + col_index*_img_mat.cols*_img_mat.channels() + 0];
-        return pix;
+        return get_pixel(row_index, col_index);
+    }
+
+    rgb Color_selector::get_pixel(int row_index, int col_index) const
+    {
+	auto bgrpix = _img_mat.at<cv::Vec3b>(col_index, row_index);
+	rgb pix(bgrpix[2], bgrpix[1], bgrpix[0]);
+
+	return pix;
     }
 
     cv::Size Color_selector::img_size() const

@@ -14,8 +14,11 @@ namespace mq{
             Color_selector(std::string img_filename);
             //std::vector<rgb> get_colors(cv::Mat img);
             rgb get_random_pixel();
+	    rgb get_pixel(int row, int col) const;
 
 	    cv::Size img_size() const; 
+
+	    
         private:
             cv::Mat _img_mat;
 
@@ -31,10 +34,14 @@ namespace mq{
 	    // Calcul des clusters dans _learner
             std::vector<rgb> update();
 	    // Réinitialisation aléatoire des prototypes
+<<<<<<< HEAD
             std::vector<rgb> reinit_prototypes();
         // Crée une image représetant les prototypes avec leur couleur associée
         //FIXME
             cv::Mat display_prototypes(Mcqueen& learner const, size_t sel_prot )
+=======
+            void reinit_prototypes();
+>>>>>>> 3f52230c2138bf5088de1e4f695e0e590d5c5cbe
         public:
 	    // Choisit un prototype par son index
 	    void select_prototype(size_t proto_index);
