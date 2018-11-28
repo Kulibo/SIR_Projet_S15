@@ -13,8 +13,11 @@ namespace mq{
             Color_selector(std::string img_filename);
             //std::vector<rgb> get_colors(cv::Mat img);
             rgb get_random_pixel();
+	    rgb get_pixel(int row, int col) const;
 
 	    cv::Size img_size() const; 
+
+	    
         private:
             cv::Mat _img_mat;
 
