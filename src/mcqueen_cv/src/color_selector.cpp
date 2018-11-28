@@ -3,10 +3,12 @@
 #include <stdexcept>
 #include <random>
 namespace mq{
+    //Construcor of the image with a filename
     Color_selector::Color_selector(std::string img_filename)
     : _img_mat(cv::imread(img_filename))
     {}
 
+    //Constrructor of the image directly with the matrix of the image
     Color_selector::Color_selector(cv::Mat img)
     : _img_mat(img)
     {
@@ -16,6 +18,7 @@ namespace mq{
 
     //std::vector<rgb> Color_selector::get_colors
 
+    //get a random pixel in the image
     rgb Color_selector::get_random_pixel(){
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -26,6 +29,7 @@ namespace mq{
         int row_index(dist_row(gen));
         int col_index(dist_col(gen));
 
+        //gets the rgb colors of the pixel from the format given by imread
         pix[0]= _img_mat.data[row_index*_img_mat.rows*_img_mat.channels() + col_index*_img_mat.cols*_img_mat.channels() + 2];
         pix[1]= _img_mat.data[row_index*_img_mat.rows*_img_mat.channels() + col_index*_img_mat.cols*_img_mat.channels() + 1];
         pix[2]= _img_mat.data[row_index*_img_mat.rows*_img_mat.channels() + col_index*_img_mat.cols*_img_mat.channels() + 0];

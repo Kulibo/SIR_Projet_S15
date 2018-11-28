@@ -45,6 +45,6 @@ namespace mq{
             std::unique_ptr<Color_selector> _selector;
             Mcqueen _learner;
             size_t _sel_prot;
-	    cv::Mat _binary_mask;
+	        cv::Mat _binary_mask;
     };
 }

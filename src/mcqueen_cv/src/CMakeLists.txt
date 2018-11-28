@@ -1,5 +1,12 @@
+file(
+    GLOB
+    sources
+    *.cpp
+    )
+
 add_library(mcqueen-cv
 	SHARED
+    ${sources}
 	)
 
 install(TARGETS mcqueen-cv
