@@ -58,7 +58,24 @@ namespace mq {
     {
 	// Met à jour le masque
     }
-
+    
+    cv::Mat display_prototypes(Mcqueen& learner const, size_t sel_prot) {
+        //TODO Gérer la répartition sur plusieurs lignes
+        size_t prot_num = learner.prototypes().size();
+        int img [1080][520][3];
+        /*int rows = 1;
+        if(1080/prot_num < 110){
+            rows = 2;
+        }
+        else if(1080/prot_num<50) {
+            rows = 3;
+        }*/
+        for(int i=0, i<1080, i++){
+            for(int j=0, j<1080, j++){
+                img[i][j] = learner.prototypes()[std::floor(i/prot_num)]
+            }
+        }   
+    }
 
 }
 	

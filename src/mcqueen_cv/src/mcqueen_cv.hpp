@@ -3,6 +3,7 @@
 #include <mcqueen>
 #include <vector>
 #include <opencv2/core/core.hpp>
+#include <cmath>
 
 namespace mq{
     using rgb = std::array<unsigned char, 3>;
@@ -31,6 +32,9 @@ namespace mq{
             std::vector<rgb> update();
 	    // Réinitialisation aléatoire des prototypes
             std::vector<rgb> reinit_prototypes();
+        // Crée une image représetant les prototypes avec leur couleur associée
+        //FIXME
+            cv::Mat display_prototypes(Mcqueen& learner const, size_t sel_prot )
         public:
 	    // Choisit un prototype par son index
 	    void select_prototype(size_t proto_index);
@@ -41,10 +45,10 @@ namespace mq{
 	    // Calcule le masque binaire correspondant au prototype considéré
 	    void update_binary_mask();
 
-        private:
-            std::unique_ptr<Color_selector> _selector;
-            Mcqueen _learner;
-            size_t _sel_prot;
-	        cv::Mat _binary_mask;
+    private:
+        std::unique_ptr<Color_selector> _selector;
+        Mcqueen _learner;
+        size_t _sel_prot;
+        cv::Mat _binary_mask;
     };
 }
