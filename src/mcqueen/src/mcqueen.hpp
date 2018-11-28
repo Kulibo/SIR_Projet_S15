@@ -17,6 +17,7 @@ namespace mq {
                 Mcqueen(size_t nPrototypes, std::function<double(T)> distance = Default_distance<std::vector<T>>(), double step = 0.5);
                 vectors update(T sample);
                 vectors prototypes() const;
+                vectors set_prototypes();
             private:
                 typename std::vector<T>::iterator find(T sample);
 
@@ -51,6 +52,11 @@ namespace mq{
 
     template<typename T>
     std::vector<T> Mcqueen<T>::prototypes() const{
+        return _prototypes;
+    }
+    template<typename T>
+    std::vector<T> Mcqueen<T>::set_prototypes(std::vector<T> prototypes){
+        _prototypes = prototypes;
         return _prototypes;
     }
 

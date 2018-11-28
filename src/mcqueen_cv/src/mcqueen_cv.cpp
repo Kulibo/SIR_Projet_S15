@@ -13,11 +13,16 @@ namespace mq {
     , _sel_prot(0)
     {}
 
-/*    Mcqueen_CV(cv::Mat img, std::vector<rgb> prototypes)
+    Mcqueen_CV(cv::Mat img, std::vector<rgb> prototypes)
     : _selector(new Color_selector(img))
-    , _learner
+    , _learner(Mcqueen<rgb>(prototypes.length()).set_prototypes(prototypes))
+    , _sel_prot(0)
     {}
     
     
-    Mcqueen_CV(std::string img_filename, std::vector<rgb> prototypes);
-}*/
+    Mcqueen_CV(std::string img_filename, std::vector<rgb> prototypes)
+    : _selector(new Color_selector(img_filename))
+    , _learner(Mcqueen<rgb>(prototypes.length()).set_prototypes(prototypes))
+    , _sel_prot(0)
+    {}
+}
