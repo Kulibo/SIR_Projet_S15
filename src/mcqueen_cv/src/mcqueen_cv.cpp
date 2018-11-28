@@ -5,26 +5,30 @@ namespace mq {
     : _selector(new Color_selector(img))
     , _learner(Mcqueen<rgb>(nPrototypes))
     , _sel_prot(0)
-    {}
+    {update_binary_mask();
+}
 
     Mcqueen_CV::Mcqueen_CV(std::string img_filename, size_t nPrototypes)
     : _selector(new Color_selector(img_filename))
     , _learner(Mcqueen<rgb>(nPrototypes))
     , _sel_prot(0)
-    {}
+    {update_binary_mask();
+}
 
     Mcqueen_CV::Mcqueen_CV(cv::Mat img, std::vector<rgb> prototypes)
     : _selector(new Color_selector(img))
     , _learner(Mcqueen<rgb>(prototypes.length()).set_prototypes(prototypes))
     , _sel_prot(0)
-    {}
+    {update_binary_mask();
+}
     
     
     Mcqueen_CV::Mcqueen_CV(std::string img_filename, std::vector<rgb> prototypes)
     : _selector(new Color_selector(img_filename))
     , _learner(Mcqueen<rgb>(prototypes.length()).set_prototypes(prototypes))
     , _sel_prot(0)
-    {}
+    {update_binary_mask();
+}
 
     void Mcqueen_CV::select_prototypes(size_t proto_index)
     {
