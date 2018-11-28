@@ -18,6 +18,8 @@ namespace mq {
                 vectors update(T sample);
                 vectors prototypes() const;
                 vectors set_prototypes(std::vector<T> prototypes);
+
+		size_t find_closest_rank(T sample) const;
             private:
                 typename std::vector<T>::iterator find(T sample);
 
@@ -60,6 +62,12 @@ namespace mq{
         return _prototypes;
     }
 
+    template <typename T>
+    size_t Mcqueen<T>::find_closest_rank(T sample) const
+    {
+	// returns the rank of the closest prototype
+	return find(sample) - _prototypes.begin();
+    }
 }
 
 #endif
