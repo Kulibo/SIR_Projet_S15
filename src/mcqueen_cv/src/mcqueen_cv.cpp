@@ -26,7 +26,6 @@ namespace mq {
     {update_binary_mask();
 }
     
-    
     Mcqueen_CV::Mcqueen_CV(std::string img_filename, std::vector<rgb> prototypes)
     : _selector(new Color_selector(img_filename))
     //FIXME
@@ -34,6 +33,21 @@ namespace mq {
     , _sel_prot(0)
     , _binary_mask(_selector.size(), CV_8U)
    {update_binary_mask();
+}
+
+std::vector<rgb> Mcqueen_CV::update()
+{
+	//TODO convergence ?
+	for(unsigned int row(0); row < _binary_mask.rows ; row++)
+	    for(unsigned int col(0); col < _binary_mask.cols; col++)
+		    _learner.update(_selector.get_pixel(row, col));
+
+	return _learners.prototypes();
+}
+
+std::vector<rgb> Mcqueen_CV::reinit_prototypes()
+{
+	//TODO
 }
 
     void Mcqueen_CV::select_prototypes(size_t proto_index)
