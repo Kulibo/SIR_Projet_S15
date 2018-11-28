@@ -28,6 +28,7 @@ namespace mq{
             std::vector<rgb> update();
             std::vector<rgb> reinit_prototypes();
         public:
+	    void select_prototype(size_t proto_index);
         private:
             std::unique_ptr<Color_selector> _selector;
             Mcqueen _learner;
