@@ -57,9 +57,15 @@ namespace mq {
     void Mcqueen_CV::update_binary_mask()
     {
 	// Met à jour le masque
+	for(unsigned int row(0); row < _binary_mask.rows ; row++)
+	{
+	    for(unsigned int col(0); col < _binary_mask.cols; col++)
+	    {
+		size_t closest_rank = find_closest_rank(_selector.get_pixel(row, col));
+	        _binary_mask.at(row, col) = (closest_rank == _sel_prot) ? 255 : 0;
+	    }
+	}
     }
-
-
 }
 	
 
