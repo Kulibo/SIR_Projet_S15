@@ -38,16 +38,20 @@ namespace mq {
 std::vector<rgb> Mcqueen_CV::update()
 {
 	//TODO convergence ?
-	for(unsigned int row(0); row < _binary_mask.rows ; row++)
+	for(unsigned int row(0); ro< _binary_mask.rows ; row++)
 	    for(unsigned int col(0); col < _binary_mask.cols; col++)
 		    _learner.update(_selector.get_pixel(row, col));
 
 	return _learners.prototypes();
 }
 
-std::vector<rgb> Mcqueen_CV::reinit_prototypes()
+void Mcqueen_CV::reinit_prototypes()
 {
-	//TODO
+	std::vector<rgb> new_prototypes;
+	for(size_t i(0); i < _learner.nbPrototypes(); i++)
+	    new_prototypes.push_back(_selector.get_random_pixel());
+
+	_learner.set_prototypes(new_prototypes);
 }
 
     void Mcqueen_CV::select_prototypes(size_t proto_index)

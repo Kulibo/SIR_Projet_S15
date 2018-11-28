@@ -33,7 +33,7 @@ namespace mq{
 	    // Calcul des clusters dans _learner
             std::vector<rgb> update();
 	    // Réinitialisation aléatoire des prototypes
-            std::vector<rgb> reinit_prototypes();
+            void reinit_prototypes();
         public:
 	    // Choisit un prototype par son index
 	    void select_prototype(size_t proto_index);
