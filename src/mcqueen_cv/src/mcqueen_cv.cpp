@@ -43,11 +43,11 @@ namespace mq {
 std::vector<rgb> Mcqueen_CV::update()
 {
 	//TODO convergence ?
-	for(unsigned int row(0); ro< _binary_mask.rows ; row++)
+	for(unsigned int row(0); row < _binary_mask.rows ; row++)
 	    for(unsigned int col(0); col < _binary_mask.cols; col++)
 		    _learner.update(_selector.get_pixel(row, col));
 
-	return _learners.prototypes();
+	return _learner.prototypes();
 }
 
 void Mcqueen_CV::reinit_prototypes()
@@ -59,7 +59,7 @@ void Mcqueen_CV::reinit_prototypes()
 	_learner.set_prototypes(new_prototypes);
 }
 
-    void Mcqueen_CV::select_prototypes(size_t proto_index)
+    void Mcqueen_CV::select_prototype(size_t proto_index)
     {
 	// Vérifie que l'on demande un index correct
 	if(proto_index >= _learner.prototypes().size())
@@ -84,12 +84,12 @@ void Mcqueen_CV::reinit_prototypes()
 	    {
 	        for(unsigned int col(0); col < _binary_mask.cols; col++)
 	        {
-		    size_t closest_rank = find_closest_rank(_selector.get_pixel(row, col));
+		    size_t closest_rank = _learner.find_closest_rank(_selector.get_pixel(row, col));
 	            _binary_mask.at(row, col) = (closest_rank == _sel_prot) ? 255 : 0;
 	        }
 	    }
     }
-    cv::Mat display_prototypes(Mcqueen& learner const, size_t sel_prot) {
+    cv::Mat display_prototypes(Mcqueen& learner, const, size_t sel_prot) {
         //TODO Gérer la répartition sur plusieurs lignes
         size_t prot_num = learner.prototypes().size();
         int img [1080][520][3];
@@ -100,8 +100,8 @@ void Mcqueen_CV::reinit_prototypes()
         else if(1080/prot_num<50) {
             rows = 3;
         }*/
-        for(int i=0, i<1080, i++){
-            for(int j=0, j<1080, j++){
+        for(int i=0; i<1080; i++){
+            for(int j=0; j<1080; j++){
                 img[i][j] = learner.prototypes()[std::floor(i/prot_num)]
             }
         }
