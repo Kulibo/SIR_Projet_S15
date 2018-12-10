@@ -23,7 +23,7 @@ namespace mq {
 
 		size_t find_closest_rank(T sample) const;
             private:
-                typename std::vector<T>::iterator find(T sample);
+                typename std::vector<T>::iterator find_closest_prototype(T sample);
 
             private:
                 vectors _prototypes;
@@ -40,11 +40,10 @@ namespace mq{
     , _distance(distance)
     , _step(step)
     {
-        
     }
     template<typename T>
     typename std::vector<T>::iterator Mcqueen<T>::find_closest_prototype(T sample) {
-        return std::min_element(_prototypes.begin(), _prototypes.end(), [this, sample](T a, T b){return _distance(a-sample)<=_distance(b-sample);}); 
+        return std::min_element(_prototypes.begin(), _prototypes.end(), [this, sample](T a, T b){return _distance(a-sample)<=_distance(b-sample);});
     }
 
     template<typename T>
