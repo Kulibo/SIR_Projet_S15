@@ -40,3 +40,6 @@ build/
 src/mcqueen/build
 src/mcqueen_cv/build
 src/mcqueen/cmake_build_debug
+
+#Visual studio
+*.vscode

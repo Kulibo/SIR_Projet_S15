@@ -96,13 +96,6 @@ void Mcqueen_CV::reinit_prototypes()
         //TODO Gérer la répartition sur plusieurs lignes
         size_t prot_num = learner.prototypes().size();
         int img [prot_w][prot_h][3];
-        /*int rows = 1;
-        if(1080/prot_num < 110){
-            rows = 2;
-        }
-        else if(1080/prot_num<50) {
-            rows = 3;
-        }*/
         int a = 0;
         for(int i=0, i<prot_w, i++){
             for(int j=0, j<prot_h, j++){
