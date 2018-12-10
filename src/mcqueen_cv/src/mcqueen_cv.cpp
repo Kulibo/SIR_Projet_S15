@@ -6,34 +6,39 @@ namespace mq {
     , _learner(Mcqueen<rgb>(nPrototypes))
     , _sel_prot(0)
     , _binary_mask(_selector.size(), CV_8U)
-   {update_binary_mask();
-}
+    {
+       update_binary_mask();
+    }
 
     Mcqueen_CV::Mcqueen_CV(std::string img_filename, size_t nPrototypes)
     : _selector(new Color_selector(img_filename))
     , _learner(Mcqueen<rgb>(nPrototypes))
     , _sel_prot(0)
     , _binary_mask(_selector.size(), CV_8U)
-    {update_binary_mask();
-}
+    {
+        update_binary_mask();
+    }
 
     Mcqueen_CV::Mcqueen_CV(cv::Mat img, std::vector<rgb> prototypes)
     : _selector(new Color_selector(img))
-    //FIXME
-    , _learner(Mcqueen<rgb>(prototypes.length()).set_prototypes(prototypes))
+    , _learner(prototypes.size())
     , _sel_prot(0)
     , _binary_mask(_selector.size(), CV_8U)
-    {update_binary_mask();
-}
-    
+    {
+        _learner.set_prototypes(prototypes)
+        update_binary_mask();
+    }
+
+
     Mcqueen_CV::Mcqueen_CV(std::string img_filename, std::vector<rgb> prototypes)
     : _selector(new Color_selector(img_filename))
-    //FIXME
-    , _learner(Mcqueen<rgb>(prototypes.length()).set_prototypes(prototypes))
+    , _learner(prototypes.size())
     , _sel_prot(0)
     , _binary_mask(_selector.size(), CV_8U)
-   {update_binary_mask();
-}
+    {
+        _learner.set_prototypes(prototypes)
+        update_binary_mask();
+    }
 
 std::vector<rgb> Mcqueen_CV::update()
 {
@@ -74,18 +79,16 @@ void Mcqueen_CV::reinit_prototypes()
 
     void Mcqueen_CV::update_binary_mask()
     {
-	// Met à jour le masque
-	for(unsigned int row(0); row < _binary_mask.rows ; row++)
-	{
-	    for(unsigned int col(0); col < _binary_mask.cols; col++)
+	    // Met à jour le masque
+	    for(unsigned int row(0); row < _binary_mask.rows ; row++)
 	    {
-		size_t closest_rank = find_closest_rank(_selector.get_pixel(row, col));
-	        _binary_mask.at(row, col) = (closest_rank == _sel_prot) ? 255 : 0;
+	        for(unsigned int col(0); col < _binary_mask.cols; col++)
+	        {
+		    size_t closest_rank = find_closest_rank(_selector.get_pixel(row, col));
+	            _binary_mask.at(row, col) = (closest_rank == _sel_prot) ? 255 : 0;
+	        }
 	    }
-	}
     }
-<<<<<<< HEAD
-    
     cv::Mat display_prototypes(Mcqueen& learner const, size_t sel_prot) {
         //TODO Gérer la répartition sur plusieurs lignes
         size_t prot_num = learner.prototypes().size();
@@ -101,11 +104,6 @@ void Mcqueen_CV::reinit_prototypes()
             for(int j=0, j<1080, j++){
                 img[i][j] = learner.prototypes()[std::floor(i/prot_num)]
             }
-        }   
+        }
     }
-
-=======
->>>>>>> 3f52230c2138bf5088de1e4f695e0e590d5c5cbe
 }
-	
-
