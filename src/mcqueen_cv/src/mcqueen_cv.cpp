@@ -1,5 +1,8 @@
 #include "mcqueen_cv.hpp"
 
+#using prot_w = 1080
+#using prot_h = 520
+
 namespace mq {
     Mcqueen_CV::Mcqueen_CV(cv::Mat img, size_t nPrototypes)
     : _selector(new Color_selector(img))
@@ -92,7 +95,7 @@ void Mcqueen_CV::reinit_prototypes()
     cv::Mat display_prototypes(Mcqueen& learner const, size_t sel_prot) {
         //TODO Gérer la répartition sur plusieurs lignes
         size_t prot_num = learner.prototypes().size();
-        int img [1080][520][3];
+        int img [prot_w][prot_h][3];
         /*int rows = 1;
         if(1080/prot_num < 110){
             rows = 2;
@@ -100,10 +103,20 @@ void Mcqueen_CV::reinit_prototypes()
         else if(1080/prot_num<50) {
             rows = 3;
         }*/
-        for(int i=0, i<1080, i++){
-            for(int j=0, j<1080, j++){
-                img[i][j] = learner.prototypes()[std::floor(i/prot_num)]
+        for(int i=0, i<prot_w, i++){
+            for(int j=0, j<prot_h, j++){
+                img[i][j] = learner.prototypes()[std::floor(i*prot_num/prot_w)];
+                if(i=std::floor(sel_prot*prot_w/prot_num)+1){
+                    img[i][j] = {255, 255, 255};
+                }
+                if(i=std::floor((sel_prot+1)*prot_w/prot_num)){
+                    img[i][j] = {0, 0, 0};
+                }
             }
         }
+        
+        namedWindow( "Prototypes", WINDOW_AUTOSIZE );  // Create a window for display.
+        imshow( "Prototypes", img );                   // Show our image inside it.
+        return img;
     }
 }
