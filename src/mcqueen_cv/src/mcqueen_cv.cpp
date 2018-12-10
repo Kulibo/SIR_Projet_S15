@@ -103,14 +103,21 @@ void Mcqueen_CV::reinit_prototypes()
         else if(1080/prot_num<50) {
             rows = 3;
         }*/
+        int a = 0;
         for(int i=0, i<prot_w, i++){
             for(int j=0, j<prot_h, j++){
                 img[i][j] = learner.prototypes()[std::floor(i*prot_num/prot_w)];
                 if(i=std::floor(sel_prot*prot_w/prot_num)+1){
                     img[i][j] = {255, 255, 255};
+                    a=1;
                 }
                 if(i=std::floor((sel_prot+1)*prot_w/prot_num)){
                     img[i][j] = {0, 0, 0};
+                    a=0;
+                }
+                if(a==1 & j==0){
+                    img[i][j] = {0, 0, 0}
+                    img[i][prot_h] = {255, 255, 255}
                 }
             }
         }
