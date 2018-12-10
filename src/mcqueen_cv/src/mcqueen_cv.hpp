@@ -1,6 +1,7 @@
 #pragma once
 
-#include <mcqueen.hpp>
+#include <mcqueen/mcqueen.hpp>
+//#include "/usr/local/include/mcqueen/mcqueen.hpp"
 #include <vector>
 #include <opencv2/core/core.hpp>
 #include <cmath>
