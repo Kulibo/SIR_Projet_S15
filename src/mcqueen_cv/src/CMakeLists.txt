@@ -9,6 +9,9 @@ add_library(mcqueen-cv
     ${sources}
 	)
 
+target_include_directories(mcqueen-cv PUBLIC "${mcn_path}")
+target_link_libraries(mcqueen-cv PUBLIC "${mcn_lib}")
+
 install(TARGETS mcqueen-cv
 	DESTINATION lib)
 
@@ -16,8 +19,6 @@ file(
 	GLOB
 	headers
 	*.hpp)
-
-target_link_libraries(mcqueen-cv mcqueen)
 
 install(FILES ${headers}
 	DESTINATION include/${CMAKE_PROJECT_NAME})
