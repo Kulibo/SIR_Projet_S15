@@ -46,3 +46,4 @@ src/mcqueen/cmake_build_debug
 
 #ROS
 ROS/devel
+ROS/logs
